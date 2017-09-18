@@ -1,0 +1,191 @@
+---
+title: "Intro R"
+author: "Katherine Tansey"
+date: "18/09/2017"
+output:
+  html_document:
+    depth: 4
+    keep_md: yes
+    theme: united
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+  word_document:
+    toc: yes
+---
+
+# Learning Objectives
+
+* Get familiar and comfortable with R Studio 
+* Understand the basic syntax of R  
+* Learn where to find help   
+
+# Introduction to Basics
+
+## Do math
+Very basic use of R is getting R to perform mathematical operations. 
+```{r}
+2 + 2
+```
+
+```{r}
+5 - 3 + 2 * 4^2
+```
+
+```{r}
+11465 * 2358971436
+```
+
+```{r}
+options(scipen = 999)
+11465 * 2358971436
+```
+What is the difference between these last two runs?    
+**What do you think *options(scipen = 999)* is doing?**      
+
+> Do some of your own mathmatical operations in R     
+
+```
+
+```
+
+
+## Prompt   
+
+Copy and paste the below into the Console.   
+```{r, eval = FALSE}
+5 - 3 + 2 * 4^
+```
+    
+    **To get back to the input prompt (>) for R, hit ESC**     
+
+## Comments
+```{r}
+# comments start with a hash just like UNIX
+# these are not evaluated in R
+# calculate rate of change
+45/100
+```
+
+Commands can come after the command on the same line as well. 
+```{r}
+x <- 43 # a number
+y <- "hello" # a word/character
+```
+
+## Assigning values to variables
+
+Variables are extremely handy. Store a value or an object as a single word.   
+```{r}
+x <- 43 # a number
+y <- "hello" # a word/character
+```
+Variable names **can not** contain spaces or special characters. They also can't start with a number.   
+
+    <- used to assign values to variables
+
+> Assign values to variables   
+
+Create a list of different animals (barnyard and household animals) each with a different value. Create at least 7 variables. 
+```{r, eval = FALSE}
+dogs <- 
+cats <-
+horses <- 
+cows <- 
+```
+
+```{r, results = "hide", echo = FALSE}
+horses <- 9
+cows <- 32
+chickens <- 19
+sheep <- 24
+dogs <- 2
+cats <- 6
+goldfish <- 4
+```
+
+## Variables can be used like values
+Can use the variables instead of values to perform mathematical operations. R will replace the variable name with the value it represents. 
+
+*Change these below to match the variable names you create above*
+```{r}
+farmyard <- horses + cows + chickens + sheep
+farmyard
+```
+
+```{r}
+household <- dogs + cats + goldfish
+household
+```
+
+```{r}
+farmyard/household
+```
+
+> Perform other mathmatical operations with variables created
+
+```
+
+```
+
+## Displaying values of variables
+
+There are two ways to do this:
+
+1. Type the variable name in R
+```{r}
+dogs
+```
+
+2. Use **print()** function
+```{r}
+print(dogs)
+```
+
+> Print values to console  
+
+```
+```
+
+> Test out tab completion on already created variables
+
+```
+```
+
+
+# Getting Help
+There are various ways to get help in R. Let's see how to get help for the mean function in R (**mean()**).
+
+1. Go to the help tab in R Studio in the bottom right quadrant, and type the function name into the search box
+2. Use **?**
+```{r}
+?mean
+```
+3. Use **??**
+```{r}
+??mean
+```
+4. Use **help()**
+```{r}
+help(mean)
+```
+
+Also Google it. These are the results from googling [R mean help](https://www.google.co.uk/search?q=R+mean+help&oq=R+mean+help&aqs=chrome..69i57j0l4.1679j0j7&sourceid=chrome&ie=UTF-8) 
+
+
+# Key Points
+* R has the usual arithmetic operators and mathematical functions  
+* <- assign values to variables  
+
+Do not use spaces, quotes, special characters, or wildcard characters such as ‘*’ or ‘?’ in file names, as it complicates variable expansion.
+
+Give files consistent names that make logical sense, reflect what the data is and that are easy to match with wildcard patterns to make it easy to select them for looping.
+
+## Cheat Sheets   
+[RStudio](https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf)          
+[R Markdown](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)           
+[R Markdown Reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)           
+
+
+

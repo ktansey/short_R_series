@@ -1,0 +1,262 @@
+---
+title: "Medic Masters - Intro R"
+author: "Katherine Tansey"
+date: "7/3/2017"
+output:
+  html_document:
+    depth: 4
+    keep_md: yes
+    theme: united
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+  word_document:
+    toc: yes
+---
+
+
+# Data Types
+Not all data are the same. R treats data differently depending on what type of data it is. To determine what type of data something is you can use the **class()** function. Variable inherit their class from the value or object assigned to that variable. 
+
+```{r}
+class(x)
+class(y)
+```
+
+# Coercion
+Sometime R gets it wrong. Each column of a data frame must be a single data type and this is because each column of a data frame is stored as a vector. When joining columns together with two different data types, R will make a choice:     
+    
+    Character + Anything_Else  ->  Character    
+    Number + Integer or Logical  ->  Number    
+    Integer + Logical  ->  Integer     
+
+There are commands to force data into a particular type:    
+
+* force to be a number     
+    + as.numeric(data$column)    
+* force to be a character   
+    + as.character(data$column)   
+* force to be a vector   
+    + as.vector(data$column)   
+* force to be a data.frame    
+    + as.data.frame(data)   
+
+> Examine coercion
+
+Load babynames from USA dataset
+```{r}
+#install.packages("babynames")
+library(babynames)
+```
+Make sex a factor
+```{r, eval = FALSE}
+babynames$sex <- as.factor(babynames$sex)
+```
+Change sex into a character and a numeric -- Examine the differences    
+```{r, eval = FALSE}
+babynames$sex1 <- as.character(babynames$sex)
+babynames$sex2 <- as.numeric(babynames$sex)
+summary(babynames)
+```
+
+
+# Data Structures
+There are a variety of different data structures in R. We are only going to cover three of them:
+1. Vector
+2. Data Frame
+3. Factor
+
+For more information on the rest of them, see [here](http://adv-r.had.co.nz/Data-structures.html), [here](http://www.statmethods.net/input/datatypes.html) and [here](https://rstudio-pubs-static.s3.amazonaws.com/90282_db0ce980e867436fa9f4c4f7695edf0f.html#chapter-5---data-structures)
+
+## Vector
+Vectors are collections of values all of the same type (meaning characters, numeric, logicals). 
+
+    c() used to combine values into a vector
+
+```{r}
+character_vector <- c("Harry Potter", "Ron Weasley", "Hermione Granger", "Neville Longbottom")
+numeric_vector <- c(1,2,3,4,5,6)
+logical_vector <- c(TRUE, FALSE, FALSE, TRUE)
+```
+
+Subsetting, or extracting, individual elements from a vector occurs by using square bracket notation **[ ]** and the number of the elements in the vector that you want. 
+
+*REMEMBER: R counts from 1*
+
+> Can you guess what these will return?  
+
+```{r, results = "hide"}
+character_vector[1]
+```
+
+```{r results = "hide"}
+character_vector[3]
+```
+
+```{r results = "hide"}
+character_vector[1:3]
+```
+
+```{r results = "hide"}
+character_vector[c(1,3)]
+```
+
+Mathmatical operations can also occur on vectors like they do on numbers and variables. Let's walk through the following code:
+
+Create two vectors. One for money earned in one week on each weekday. The second is money spent on each weekday in that week. 
+```{r}
+money_earned <- c(85, 14, 67, 33, 54)
+money_spent <- c(62, 42, 36, 75, 94)
+```
+
+Caluclate the total (net amount) of money for each weekday
+```{r}
+money_total <- money_earned - money_spent
+money_total
+```
+
+Find which days in which we earned money (made more money than we spent). Returns a logical, where TRUE is when money_total is greater than 0 and FALSE when it is not.  
+```{r}
+made_money <- money_total > 0
+made_money
+```
+
+Extract out just the total money for the days that we earned money.
+```{r}
+good_days <- money_total[made_money]
+good_days
+```
+
+Another possible way to do this, can you see what is occuring here?
+```{r}
+good_days2 <- money_total[made_money > 0]
+good_days2
+```
+
+> Play with vectors
+
+Merge two vectors together.
+```{r}
+HP <- c("Harry Potter", "Ron Weasley", "Hermione Granger")
+HG <- c("Katniss Everdeen", "Peeta Mellark", "Gale Hawthorne")
+
+Book_PPL <- c(HP, HG)
+```
+
+
+## Factor
+Factors store categorical data. Use the fuction **factor()** to convert a vector in a factor. 
+
+```{r}
+sex_vector <- c("Male", "Female", "Female", "Male", "Male")
+factor_sex_vector <- factor(sex_vector)
+factor_sex_vector
+summary(factor_sex_vector)
+```
+**What is summary function doing?**      
+    
+Factors can be ordered. This aligns with ordinal data, which is categorical but has a set order to it.    
+
+```{r}
+age_vector <- c("35-50", "51-69", "35-50", "18-34", "51-69", "18-34", "35-50", "18-34", "51-69", "18-34","35-50", "35-50")
+factor_age_vector <- factor(age_vector, ordered=T, levels = c("Under 18", "18-34", "35-50", "51-69", "Over 70"))
+factor_age_vector
+summary(factor_age_vector)
+```
+
+> Create Factors
+
+```{r}
+movie_ratings <- c("bad", "okay", "okay", "good", "amazing", "horrible", "bad", "amazing")
+```
+1. Convert movie_ratings to non-ordered factor vector and print to screen factor_movie_ratings
+```
+
+```
+2. Convert movie_ratings to ordered factor vector and print to screen factor_movie_ratings
+```
+
+```
+Which one do you think is more informative?
+
+## Data Frame
+Two dimensional object that include both rows and columns. Columns are variables and rows are the observations. Each column can have a different data type. 
+
+    data.frame() used to create a data frame
+
+Use a data set that is in data.frame format which is preloaded into R called "iris". For more information about this dataset, see [here](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html).
+
+Print the entire dataset to screen
+```{r}
+iris
+```
+Print the first 6 rows. Command the same as in UNIX, just syntax slightly different (meaing UNIX does not use () around commands).
+```{r}
+head(iris)
+```
+Print the last 6 rows. Command the same as in UNIX, just syntax slightly different.
+```{r}
+tail(iris)
+```
+**How do you alter how many lines get printed with head() or tail()?**
+
+    str() prints nice summary of the data.frame including data type of each column   
+    
+```{r}
+str(iris)
+```
+
+*REMEMBER: R counts from 1*
+
+### Retrive elements from a data.frame
+> Can you guess what these will return?   
+
+```{r, results = "hide"}
+iris[,2]
+```
+
+```{r, results = "hide"}
+iris[4,]
+```
+
+```{r, results = "hide"}
+iris[,"Species"]
+```
+
+```{r, results = "hide"}
+iris[1:2,2]
+```
+
+```{r, results = "hide"}
+iris[2:5,1:2]
+```
+
+```{r, results = "hide"}
+iris[c(1,4,7), c(1,3)]
+```
+
+```{r, results = "hide"}
+iris[which(iris$Sepal.Length > 7.5), ]
+```
+**What do you think the which() command is doing?**    
+
+### Datafame size
+
+    nrow() to find out the number of rows in the dataframe
+
+```{r}
+nrow(iris)
+```
+
+    dim() returns the number of rows and columns 
+
+```{r}
+dim(iris)
+```
+
+    colnames() returns the column names of the dataframe 
+
+```{r}
+colnames(iris)
+```

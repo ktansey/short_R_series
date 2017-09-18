@@ -1,0 +1,83 @@
+---
+title: "Medic Masters - Intro R"
+author: "Katherine Tansey"
+date: "7/3/2017"
+output:
+  html_document:
+    depth: 4
+    keep_md: yes
+    theme: united
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+  word_document:
+    toc: yes
+---
+
+# Project Management
+
+> Create a project for the Medic Masters R learning
+
+```
+```
+
+# Using Markdown
+
+See [here](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) for reference guide, and [here](http://rmarkdown.rstudio.com/lesson-15.html) for a cheat sheet. 
+
+> Examine Markdown HTML file and Rmd to compare
+
+```
+```
+
+> Altering a markdown file   
+
+Add a code chunks to this markdown file, using this template:    
+```
+farmyard/household
+```
+1. Code chunk and results are printed.   
+
+```
+```
+
+2. Code chunk is printed but the results are not.
+
+```
+```
+
+3. Code chunk is not printed but the results are.  
+
+```
+```
+
+4. R does not run the code chunk.  
+
+```
+```
+
+# Integrate with Git
+
+# Wrapping Up
+
+* Use Rstudio 
+    + Markdown, project management, git !
+
+## Key Points
+
+* Treat raw data as read-only  
+* Treat generated output as disposable  
+* Separate function definition and application   
+
+
+Do not use spaces, quotes, special characters, or wildcard characters such as ‘*’ or ‘?’ in filenames, as it complicates variable expansion.
+
+Give files consistent names that make logical sense, reflect what the data is and that are easy to match with wildcard patterns to make it easy to select them for looping.
+
+## Cheat Sheets   
+[RStudio](https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf)          
+[R Markdown](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)           
+[R Markdown Reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)           
+
+
